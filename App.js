@@ -1,49 +1,41 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import type {Node} from 'react';
-import {
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+import { Text, FlatList, Image, Dimensions, ScrollView, useWindowDimensions, StyleSheet} from 'react-native';
+import Header from './src/Components/Header';
 
-import {Colors} from 'react-native/Libraries/NewAppScreen';
-
-const Section = ({children, title}): Node => {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-};
+const usuarios = [
+  {usuario: "Pablo"},
+  {usuario: "Christoffer"},
+  {usuario: "Preben"},
+]
+const largurad = Dimensions.get("screen").width;
 
 const App: () => Node = () => {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
+  const largura = useWindowDimensions().width;
   return (
-    <Text>teste</Text>
+    <ScrollView>
+      <FlatList
+        data={usuarios}
+        //keyExtractor = {(item) =>item.id.toString()}
+        renderItem={({item}) =>
+        <Fragment>
+          <Header nomeUsuario={item.usuario}/>
+            <Image 
+              source={require("./res/img/alura.jpg")}
+              style={styles.imgfeed}/>
+       </Fragment>}
+      />
+     
+    </ScrollView>
   );
 };
+
+
+ const styles = StyleSheet.create({
+   imgfeed: {
+     width: largurad,
+     height: largurad
+   }
+ });
 
 export default App;
