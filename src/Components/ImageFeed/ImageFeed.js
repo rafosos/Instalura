@@ -3,9 +3,9 @@ import styles from './style';
 import React, {Fragment, useState} from 'react';
 import { getLikeIcon, changeLike } from '../../api/likes';
 
-const ImageFeed = ({image}) => {
+const ImageFeed = ({numlikes, url, userName, description}) => {
     const [liked, setLiked] = useState(false);
-    const [likes, setLikes] = useState(image.likes);
+    const [likes, setLikes] = useState(numlikes);
     const onLikeClicked = () => {
         const [num, likedN] = changeLike(liked, likes);
         setLikes(num);
@@ -15,7 +15,7 @@ const ImageFeed = ({image}) => {
     return(
         <Fragment>
                 <Image 
-                source={{uri: image.url}}
+                source={{uri: url}}
                 style={styles.imgfeed}
                 />
                 <View style={styles.container}>
@@ -28,8 +28,8 @@ const ImageFeed = ({image}) => {
                     <Text>{likes}</Text>
                 </View>
                 <Text style={styles.photoDescription}>
-                    <Text style={styles.bold}>{image.userName} </Text> 
-                    {image.description}
+                    <Text style={styles.bold}>{userName} </Text> 
+                    {description}
                 </Text>
         </Fragment>
     )      

@@ -4,6 +4,7 @@ import { Text, FlatList, Image, Dimensions, ScrollView, useWindowDimensions} fro
 import { Header } from './src/Components/Header';
 import { ImageFeed } from './src/Components/ImageFeed';
 import readImages from './src/api/feed';
+import { Comments } from './src/Components/Comments';
 
 //const App: () => Node = () => {
 const App = () => {
@@ -23,7 +24,8 @@ const App = () => {
         renderItem={({item}) =>
         <Fragment>
           <Header userName={item.userName} userUrl={item.userURL}/>
-          <ImageFeed image={item} />
+          <ImageFeed numlikes={item.likes} url={item.url} userName={item.userName} description={item.description} />
+          <Comments comments={item.comentarios} />
        </Fragment>}
       />
      
