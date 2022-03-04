@@ -1,11 +1,11 @@
 import {Dimensions, StyleSheet} from 'react-native';
 
-const largurad = Dimensions.get("screen").width;
+const largura = Dimensions.get("screen").width;
 
  const styles = StyleSheet.create({
    imgfeed: {
-     width: largurad,
-     height: largurad
+     width: largura,
+     height: largura
    },
    likeIcon: {
      width: 35,

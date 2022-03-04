@@ -1,5 +1,9 @@
+import { Platform } from "react-native";
+
 const readImages = async(callback) =>{
-      const imgsHTTP = await fetch("http://10.0.2.2:3030/feed");
+      let url = Platform.OS == "android" ? "10.0.2.2" : "localhost";
+      
+      const imgsHTTP = await fetch(`http://${url}:3030/feed`);
       const imgsJSON = await imgsHTTP.json();
       callback(imgsJSON);
     }
